@@ -63,7 +63,6 @@ namespace UnitTests.Backend
 
             // Get the first item from the list
             var oldItem = myData.Index().LogList[0];
-            var oldPhoneID = oldItem.PhoneID;
 
             // Change the ID
             var newPhoneID = "UpdatedPhoneP";
@@ -78,6 +77,30 @@ namespace UnitTests.Backend
             Assert.AreEqual(newPhoneID, newItem.PhoneID);
         }
 
+        [TestMethod]
+        public void LogBackend_Delete_Only_Item_Should_Pass()
+        {
+            // Arrange
+            var myData = LogBackend.Instance;
+            var item = new LogModel();
+            item.ID = "IDBird";
+            item.PhoneID = "PhoneBird";
+            item.RecordedDateTime = DateTime.Parse("04/01/2018");
+            item.Value = "ValueBird";
+            myData.Create(item);
+
+            // Get the first item from the list
+            var oldItem = myData.Index().LogList[0];
+            var oldPhoneID = oldItem.PhoneID;
+
+            // Act
+            var result = myData.Delete(oldItem.ID);
+            var newItem = myData.Read(item.ID);
+
+            // Assert
+            myData.Reset();
+            Assert.IsNull(newItem);
+        }
 
     }
 }
