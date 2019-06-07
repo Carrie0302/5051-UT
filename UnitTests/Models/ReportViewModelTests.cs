@@ -24,7 +24,7 @@ namespace UnitTests.Models
 
 
         [TestMethod]
-        public void ReportViewModel_Get_LogViewModel_Should_Pass()
+        public void ReportViewModel_Get_LogViewModel_Default_Should_Pass()
         {
             //Arrange
             var myTest = new ReportViewModel();
@@ -37,7 +37,7 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
-        public void ReportViewModel_Set_LogViewModel_Should_Pass()
+        public void ReportViewModel_Set_LogViewModel_Default_Should_Pass()
         {
             //Arrange
             var myTest = new ReportViewModel();
@@ -52,5 +52,19 @@ namespace UnitTests.Models
             //Assert
             Assert.AreEqual("DogPhone", myTest.LogViewModel.LogList[0].PhoneID);
         }
+
+        [TestMethod]
+        public void ReportViewModel_Get_NumberOfUsers_Default_Should_Pass()
+        {
+            //Arrange
+            var myTest = new ReportViewModel();
+
+            //Action
+            var result = myTest.NumberOfUsers;
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
     }
 }
