@@ -106,15 +106,27 @@ namespace UnitTests.Backend
         {
             // Arrange
             var myData = LogBackend.Instance;
-            var oldItem = myData.Index().LogList[0];
+            var item = new LogModel();
+            item.ID = "IDDog";
+            item.PhoneID = "PhoneDog";
+            item.RecordedDateTime = DateTime.Parse("03/01/2018");
+            item.Value = "ValueDog";
+            myData.Create(item);
+
+            var item2 = new LogModel();
+            item2.ID = "IDCat";
+            item2.PhoneID = "PhoneCat";
+            item2.RecordedDateTime = DateTime.Parse("04/11/2018");
+            item2.Value = "ValueCat";
+            myData.Create(item2);
 
             // Act
-            var result = myData.Delete(oldItem.ID);
+            var result = myData.Delete(item.ID);
             var newItem = myData.Index().LogList[0];
 
             // Assert
             myData.Reset();
-            Assert.AreNotEqual(oldItem.PhoneID, newItem.PhoneID);
+            Assert.AreNotEqual(item.PhoneID, newItem.PhoneID);
         }
 
 
