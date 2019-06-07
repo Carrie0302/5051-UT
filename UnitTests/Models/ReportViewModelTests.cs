@@ -14,8 +14,10 @@ namespace UnitTests.Models
             //Arrange
 
             //Action
+            var result = new ReportViewModel();
 
             //Assert
+            Assert.IsNotNull(result);
 
         }
     }
