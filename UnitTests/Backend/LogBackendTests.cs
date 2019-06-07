@@ -48,6 +48,30 @@ namespace UnitTests.Backend
 
         }
 
+        [TestMethod]
+        public void LogBackend_Read_Item_Should_Pass()
+        {
+            // Arrange
+            var myData = LogBackend.Instance;
+            var item = new LogModel();
+            item.ID = "IDDog";
+            item.PhoneID = "PhoneDog";
+            item.RecordedDateTime = DateTime.Parse("03/01/2018");
+            item.Value = "ValueDog";
+            myData.Create(item);
+
+            //Action
+            var result = myData.Read(item.ID);
+
+            //Assert
+            myData.Reset();
+            Assert.AreEqual(item.ID, result.ID);
+            Assert.AreEqual(item.Value, result.Value);
+            Assert.AreEqual(item.PhoneID, result.PhoneID);
+            Assert.AreEqual(item.RecordedDateTime, result.RecordedDateTime);
+            Assert.AreEqual(item.AppVersion, result.AppVersion);
+
+        }
 
         [TestMethod]
         public void LogBackend_Update_Item_Should_Pass()
@@ -82,25 +106,18 @@ namespace UnitTests.Backend
         {
             // Arrange
             var myData = LogBackend.Instance;
-            var item = new LogModel();
-            item.ID = "IDBird";
-            item.PhoneID = "PhoneBird";
-            item.RecordedDateTime = DateTime.Parse("04/01/2018");
-            item.Value = "ValueBird";
-            myData.Create(item);
-
-            // Get the first item from the list
             var oldItem = myData.Index().LogList[0];
-            var oldPhoneID = oldItem.PhoneID;
 
             // Act
             var result = myData.Delete(oldItem.ID);
-            var newItem = myData.Read(item.ID);
+            var newItem = myData.Index().LogList[0];
 
             // Assert
             myData.Reset();
-            Assert.IsNull(newItem);
+            Assert.AreNotEqual(oldItem.PhoneID, newItem.PhoneID);
         }
+
+
 
     }
 }
