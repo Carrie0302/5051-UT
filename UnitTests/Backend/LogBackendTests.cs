@@ -25,5 +25,27 @@ namespace UnitTests.Backend
         }
 
 
+        [TestMethod]
+        public void LogBackend_Create_Valid_Item_Should_Pass()
+        {
+            // Arrange
+            var myData = LogBackend.Instance;
+            var item = new LogModel();
+            item.ID = "IDCat";
+            item.PhoneID = "PhoneCat";
+            item.RecordedDateTime = DateTime.Parse("01/29/2019");
+            item.Value = "ValueCat";
+
+            // Action 
+            var newItem = myData.Create(item);
+
+            // Assert
+            myData.Reset();
+            Assert.AreEqual(item.ID, newItem.ID);
+            Assert.AreEqual(item.PhoneID, newItem.PhoneID);
+            Assert.AreEqual(item.RecordedDateTime, newItem.RecordedDateTime);
+            Assert.AreEqual(item.Value, newItem.Value);
+
+        }
     }
 }
