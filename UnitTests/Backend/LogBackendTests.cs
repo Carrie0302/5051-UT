@@ -47,5 +47,37 @@ namespace UnitTests.Backend
             Assert.AreEqual(item.Value, newItem.Value);
 
         }
+
+
+        [TestMethod]
+        public void LogBackend_Update_Item_Should_Pass()
+        {
+            // Arrange
+            var myData = LogBackend.Instance;
+            var item = new LogModel();
+            item.ID = "IDDog";
+            item.PhoneID = "PhoneDog";
+            item.RecordedDateTime = DateTime.Parse("03/01/2018");
+            item.Value = "ValueDog";
+            myData.Create(item);
+
+            // Get the first item from the list
+            var oldItem = myData.Index().LogList[0];
+            var oldPhoneID = oldItem.PhoneID;
+
+            // Change the ID
+            var newPhoneID = "UpdatedPhoneP";
+            oldItem.PhoneID = newPhoneID;
+
+            // Act
+            var result = myData.Update(oldItem);
+            var newItem = myData.Read(oldItem.ID);
+
+            // Assert
+            myData.Reset();
+            Assert.AreEqual(newPhoneID, newItem.PhoneID);
+        }
+
+
     }
 }
