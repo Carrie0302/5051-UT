@@ -11,6 +11,12 @@ namespace UnitTests.Models
         public void ReportViewModel_Instantiate_Default_Should_Pass()
         {
 
+            //Arrange
+
+            //Action
+
+            //Assert
+
         }
     }
 }
