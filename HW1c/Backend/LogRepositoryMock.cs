@@ -109,6 +109,14 @@ namespace HW1c.Backend
         }
 
         /// <summary>
+        /// Clears the content of dataset for component testing
+        /// </summary>
+        public void Reset()
+        {
+            dataset.Clear();
+        }
+
+        /// <summary>
         /// Sets Initial Seed Data
         /// </summary>
         public void Initialize()

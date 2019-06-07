@@ -18,5 +18,6 @@ namespace HW1c.Backend
         LogModel Update(LogModel data);
         Boolean Delete(String id);
         List<LogModel> Index();
+        void Reset();
     }
 }

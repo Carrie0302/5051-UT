@@ -91,5 +91,10 @@ namespace HW1c.Backend
 
             return myData;
         }
+
+        public void Reset()
+        {
+            repository.Reset();
+        }
     }
 }
