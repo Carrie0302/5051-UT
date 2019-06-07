@@ -92,5 +92,18 @@ namespace UnitTests.Models
             Assert.AreEqual(myAppVers, result);
         }
 
+        [TestMethod]
+        public void LogModel_Set_AppVersion_Default_Should_Pass()
+        {
+            //Arrange
+            var myAppVers = "Koko";
+            var myTest = new LogModel();
+
+            //Action
+            myTest.AppVersion = myAppVers;
+
+            //Assert
+            Assert.AreEqual(myAppVers, myTest.AppVersion);
+        }
     }
 }
